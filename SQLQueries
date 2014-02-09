@@ -1,0 +1,95 @@
+ 
+USE SIS
+
+--1
+PRINT '***QUESTION 1***'
+PRINT ''
+
+SELECT number as Employee, reportsTo as 'Employee Reports To' 
+    FROM Employee
+
+--2
+PRINT '***QUESTION 2***'
+PRINT ''
+SELECT e1.number AS 'Employee', e1.reportsTo AS 'Employee Reports To', e2.reportsTo as 'Supervisor Reports To'
+	FROM employee e1, employee e2
+	WHERE e1.reportsTo = e2.number 
+
+--3
+PRINT '***QUESTION 3***'
+PRINT ''
+SELECT e1.number AS 'Employee', e1.reportsTo AS 'Employee Reports To', e2.reportsTo as 'Supervisor Reports To'
+	FROM employee e1 LEFT OUTER JOIN employee e2
+	ON e1.reportsTo = e2.number
+	ORDER BY e1.number 
+
+--4
+PRINT '***QUESTION 4***'
+PRINT ''
+SELECT e1.number AS 'Employee', e1.reportsTo AS 'Employee Reports To', e2.reportsTo as 'Supervisor Reports To'
+	FROM employee e1 RIGHT OUTER JOIN employee e2
+	ON e1.reportsTo = e2.number
+	ORDER BY e1.number 
+
+--5
+PRINT '***QUESTION 5***'
+PRINT ''
+SELECT e1.number AS 'Employee', e1.reportsTo AS 'Employee Reports To', e2.reportsTo as 'Supervisor Reports To'
+	FROM employee e1 FULL OUTER JOIN employee e2
+	ON e1.reportsTo = e2.number
+	ORDER BY e1.number 
+
+--6
+PRINT '***QUESTION 6***'
+PRINT ''
+SELECT Campus.name AS 'Campus', School.name AS 'School'
+    FROM Campus CROSS JOIN School
+
+--7
+PRINT '***QUESTION 7***'
+PRINT ''
+SELECT COUNT(*) AS 
+		'All Employees'
+			FROM Employee
+--8
+PRINT '***QUESTION 8***'
+PRINT ''
+
+SET ANSI_WARNINGS ON
+
+--9
+PRINT '***QUESTION 9***'
+PRINT ''
+SELECT COUNT(reportsTo) AS 
+		'Staff'
+			FROM Employee
+--10
+PRINT '***QUESTION 10***'
+PRINT ''
+SELECT COUNT( DISTINCT reportsTo ) AS
+		 'Supervisor'
+			FROM Employee	
+			
+--11
+PRINT '***QUESTION 11***'
+PRINT ''
+
+SELECT CourseOffering.sessionCode, CourseOffering.courseNumber, Person.firstName, Person.lastName
+    FROM CourseOffering INNER JOIN Person
+	ON CourseOffering.employeeNumber = Person.number
+	WHERE CourseOffering.sessionCode = 'F11'
+	ORDER BY courseNumber
+
+
+--
+PRINT '***QUESTION 13***'
+PRINT ''
+SELECT  MIN (finalMark) AS 'Lowest Mark', AVG(finalMark) AS 'Average Finalmark', 
+    MAX(finalMark) AS 'Maximum Mark', CourseOffering.courseNumber
+    FROM CourseStudent INNER JOIN CourseOffering
+	ON CourseStudent.studentNumber= CourseOffering.id
+
+--
+PRINT '***QUESTION 14***'
+PRINT ''
+SET ANSI_WARNINGS OFF
