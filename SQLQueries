@@ -2,21 +2,26 @@
 USE SIS
 
 --1
-PRINT '***QUESTION 1***'
+--Show Employee number aliased as ‘Employee’ and Employee reportsTo aliased as ‘Employee Reports To’.
+--Order the results by number.  Do not perform a join.
 PRINT ''
 
 SELECT number as Employee, reportsTo as 'Employee Reports To' 
     FROM Employee
 
 --2
-PRINT '***QUESTION 2***'
+--Question: Show Employee e1.number aliased as ‘Employee’ and Employee e1.reportsTo aliased as ‘Employee Reports To’ 
+--and Employee e2.reportsTo aliased as ‘Supervisor Reports To’.  
+--Order the results by e1.number.  Do an inner self-join (e1.reportsTo = e2.number).
 PRINT ''
 SELECT e1.number AS 'Employee', e1.reportsTo AS 'Employee Reports To', e2.reportsTo as 'Supervisor Reports To'
 	FROM employee e1, employee e2
 	WHERE e1.reportsTo = e2.number 
 
 --3
-PRINT '***QUESTION 3***'
+--Show Employee e1.number aliased as ‘Employee’ and Employee e1.reportsTo aliased as ‘Employee Reports To’ 
+--and Employee e2.reportsTo aliased as ‘Supervisor Reports To’.  
+--Order the results by e1.number.  Do left outer self-join (e1.reportsTo = e2.number).
 PRINT ''
 SELECT e1.number AS 'Employee', e1.reportsTo AS 'Employee Reports To', e2.reportsTo as 'Supervisor Reports To'
 	FROM employee e1 LEFT OUTER JOIN employee e2
@@ -24,7 +29,9 @@ SELECT e1.number AS 'Employee', e1.reportsTo AS 'Employee Reports To', e2.report
 	ORDER BY e1.number 
 
 --4
-PRINT '***QUESTION 4***'
+-Show Employee e1.number aliased as ‘Employee’ and Employee e1.reportsTo aliased as ‘Employee Reports To’ and 
+--Employee e2.reportsTo aliased as ‘Supervisor Reports To’.  Order the results by e1.number.  
+--Do right outer self-join (e1.reportsTo = e2.number).
 PRINT ''
 SELECT e1.number AS 'Employee', e1.reportsTo AS 'Employee Reports To', e2.reportsTo as 'Supervisor Reports To'
 	FROM employee e1 RIGHT OUTER JOIN employee e2
